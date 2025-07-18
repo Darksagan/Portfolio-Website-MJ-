@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 
 const projects = [
@@ -38,13 +38,13 @@ const projects = [
 
 const ProjectsSection = () => {
   const controls = useAnimation()
-  const sectionRef = useRef(null)
-  const containerRef = useRef(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
-  const [selectedProject, setSelectedProject] = useState(null)
-  const [hoveredIndex, setHoveredIndex] = useState(null)
-  
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   // Adjusted maxScroll to properly reach the fifth card
   const maxScroll = 250
 
@@ -58,39 +58,58 @@ const ProjectsSection = () => {
       { threshold: 0.2 }
     )
 
-    if (sectionRef.current) observer.observe(sectionRef.current)
+    const sectionElement = sectionRef.current
+    if (sectionElement) observer.observe(sectionElement)
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current)
+      if (sectionElement) observer.unobserve(sectionElement)
     }
   }, [controls])
 
+  // Wrap handleScroll with useCallback so it is stable for useEffect deps
+  const handleScroll = useCallback((delta: number) => {
+    if (isScrolling) return
+
+    setIsScrolling(true)
+
+    setScrollPosition((prev) => {
+      const newPosition = prev + delta * 1.2 // Increased sensitivity
+      const clampedPosition = Math.max(0, Math.min(maxScroll, newPosition))
+      console.log('Scroll position:', clampedPosition) // Debug log
+      return clampedPosition
+    })
+
+    setTimeout(() => {
+      setIsScrolling(false)
+    }, 100)
+  }, [isScrolling])
+
   useEffect(() => {
-    const handleWheel = (e) => {
+    const handleWheel = (e: WheelEvent) => {
       if (!sectionRef.current) return
-      
+
       const rect = sectionRef.current.getBoundingClientRect()
       const isInSection = rect.top < window.innerHeight && rect.bottom > 0
-      
+
       if (isInSection && !isScrolling) {
         e.preventDefault()
         handleScroll(e.deltaY)
       }
     }
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedProject) {
         if (e.key === 'Escape') {
           setSelectedProject(null)
         }
         return
       }
-      
+
       const rect = sectionRef.current?.getBoundingClientRect()
       const isInSection = rect && rect.top < window.innerHeight && rect.bottom > 0
-      
+
       if (isInSection) {
-        switch(e.key) {
+        switch (e.key) {
           case 'ArrowLeft':
             e.preventDefault()
             handleScroll(-50)
@@ -103,7 +122,6 @@ const ProjectsSection = () => {
       }
     }
 
-    // Add event listeners to the section itself for better control
     const section = sectionRef.current
     if (section) {
       section.addEventListener('wheel', handleWheel, { passive: false })
@@ -116,27 +134,10 @@ const ProjectsSection = () => {
       }
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isScrolling, selectedProject])
-
-  const handleScroll = (delta) => {
-    if (isScrolling) return
-    
-    setIsScrolling(true)
-    
-    setScrollPosition(prev => {
-      const newPosition = prev + delta * 1.2 // Increased sensitivity
-      const clampedPosition = Math.max(0, Math.min(maxScroll, newPosition))
-      console.log('Scroll position:', clampedPosition) // Debug log
-      return clampedPosition
-    })
-    
-    setTimeout(() => {
-      setIsScrolling(false)
-    }, 100)
-  }
+  }, [isScrolling, selectedProject, handleScroll])
 
   const handleTouchStart = useRef({ x: 0, y: 0 })
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     e.preventDefault()
     const touch = e.touches[0]
     const deltaX = handleTouchStart.current.x - touch.clientX
@@ -144,12 +145,12 @@ const ProjectsSection = () => {
     handleTouchStart.current = { x: touch.clientX, y: touch.clientY }
   }
 
-  const handleTouchStartEvent = (e) => {
+  const handleTouchStartEvent = (e: React.TouchEvent) => {
     const touch = e.touches[0]
     handleTouchStart.current = { x: touch.clientX, y: touch.clientY }
   }
 
-  const openModal = (project) => {
+  const openModal = (project: typeof projects[0]) => {
     setSelectedProject(project)
     document.body.style.overflow = 'hidden'
   }
@@ -170,8 +171,8 @@ const ProjectsSection = () => {
 
   return (
     <>
-      <section 
-        ref={sectionRef} 
+      <section
+        ref={sectionRef}
         className="relative w-full h-screen overflow-hidden bg-gray-100"
         onTouchStart={handleTouchStartEvent}
         onTouchMove={handleTouchMove}
@@ -192,13 +193,13 @@ const ProjectsSection = () => {
           className="absolute inset-0 w-[350vw] h-full z-20"
           style={{
             transform: `translateX(-${scrollPosition}vw)`,
-            transition: 'transform 0.1s ease-out'
+            transition: 'transform 0.1s ease-out',
           }}
         >
           {projects.map((project, index) => {
             const position = cardPositions[index]
             const isHovered = hoveredIndex === index
-            
+
             return (
               <motion.div
                 key={index}
@@ -208,11 +209,11 @@ const ProjectsSection = () => {
                   left: position.left,
                   transform: `rotate(${position.rotation}deg)`,
                 }}
-                whileHover={{ 
-                  scale: 1.02, 
+                whileHover={{
+                  scale: 1.02,
                   y: -10,
                   rotate: position.rotation,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.3 },
                 }}
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
@@ -223,7 +224,7 @@ const ProjectsSection = () => {
                   src={project.thumbnail}
                   alt={project.title}
                   onError={(e) => {
-                    e.target.src = '/thumbnails/placeholder.jpg'
+                    ;(e.target as HTMLImageElement).src = '/thumbnails/placeholder.jpg'
                   }}
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
                     isHovered ? 'opacity-0' : 'opacity-100'
@@ -243,7 +244,7 @@ const ProjectsSection = () => {
                 />
 
                 {/* Overlay Info */}
-                <div 
+                <div
                   className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent text-white p-6 transform transition-transform duration-300 ${
                     isHovered ? 'translate-y-0' : 'translate-y-full'
                   }`}
@@ -265,7 +266,7 @@ const ProjectsSection = () => {
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 text-gray-600 text-sm z-30">
           <span>Scroll to explore ({projects.length} projects)</span>
           <div className="w-48 h-0.5 bg-gray-300 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-gray-900 transition-all duration-100 ease-out"
               style={{ width: `${(scrollPosition / maxScroll) * 100}%` }}
             />
@@ -283,14 +284,14 @@ const ProjectsSection = () => {
             >
               ×
             </button>
-            
+
             <video
               src={selectedProject.video}
               controls
               autoPlay
               className="w-full max-h-[80vh] rounded-lg"
             />
-            
+
             <div className="absolute -bottom-20 left-0 text-white">
               <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
               <p className="text-lg opacity-80 max-w-2xl">{selectedProject.description}</p>
