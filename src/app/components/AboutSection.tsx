@@ -31,18 +31,24 @@ const AboutSection = () => {
 
   const underlineScaleX = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
 
-  const skillAnimations = [
-    'Web Development',
-    'Brand Strategy',
-    'UI/UX Design',
-    'Digital Marketing',
-    'Creative Direction',
-    'Consulting',
-  ].map((skill, index) => ({
-    skill,
-    y: useTransform(scrollYProgress, [0, 0.6 + index * 0.05, 0.8, 1], [50, 0, 0, -50]),
-    opacity: useTransform(scrollYProgress, [0, 0.5 + index * 0.05, 0.8, 1], [0, 1, 1, 0]),
-  }))
+  // Fix: Declare skill transforms individually
+  const skill1Y = useTransform(scrollYProgress, [0, 0.6, 0.8, 1], [50, 0, 0, -50])
+  const skill1Opacity = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 1, 1, 0])
+
+  const skill2Y = useTransform(scrollYProgress, [0, 0.65, 0.8, 1], [50, 0, 0, -50])
+  const skill2Opacity = useTransform(scrollYProgress, [0, 0.55, 0.8, 1], [0, 1, 1, 0])
+
+  const skill3Y = useTransform(scrollYProgress, [0, 0.7, 0.8, 1], [50, 0, 0, -50])
+  const skill3Opacity = useTransform(scrollYProgress, [0, 0.6, 0.8, 1], [0, 1, 1, 0])
+
+  const skill4Y = useTransform(scrollYProgress, [0, 0.75, 0.9, 1], [50, 0, 0, -50])
+  const skill4Opacity = useTransform(scrollYProgress, [0, 0.65, 0.9, 1], [0, 1, 1, 0])
+
+  const skill5Y = useTransform(scrollYProgress, [0, 0.8, 0.95, 1], [50, 0, 0, -50])
+  const skill5Opacity = useTransform(scrollYProgress, [0, 0.7, 0.95, 1], [0, 1, 1, 0])
+
+  const skill6Y = useTransform(scrollYProgress, [0, 0.85, 1, 1], [50, 0, 0, -50])
+  const skill6Opacity = useTransform(scrollYProgress, [0, 0.75, 1, 1], [0, 1, 1, 0])
 
   return (
     <section
@@ -56,7 +62,6 @@ const AboutSection = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/About_me.png')" }}
         />
-        {/* ✅ Dark Overlay */}
         <div className="absolute inset-0 bg-black opacity-60" />
       </div>
 
@@ -72,11 +77,7 @@ const AboutSection = () => {
         {/* Section Header */}
         <motion.div
           className="text-center mb-12"
-          style={{
-            y: headerY,
-            opacity: headerOpacity,
-            scale: headerScale,
-          }}
+          style={{ y: headerY, opacity: headerOpacity, scale: headerScale }}
         >
           <motion.h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight relative inline-block">
             ABOUT MARCUS
@@ -92,14 +93,9 @@ const AboutSection = () => {
 
         {/* Content */}
         <div className="flex flex-col md:flex-row gap-10 items-center justify-center">
-          {/* Text Content */}
           <motion.div
             className="md:w-3/4 space-y-6 text-lg text-gray-300"
-            style={{
-              y: textY,
-              opacity: textOpacity,
-              scale: textScale,
-            }}
+            style={{ y: textY, opacity: textOpacity, scale: textScale }}
           >
             <motion.p>
               With over a decade in the digital space, I've learned that great design isn't just about
@@ -117,26 +113,31 @@ const AboutSection = () => {
             {/* Skill Tags */}
             <motion.div
               className="border-t border-gray-700 pt-8 mt-8"
-              style={{
-                y: skillsY,
-                opacity: skillsOpacity,
-                scale: skillsScale,
-              }}
+              style={{ y: skillsY, opacity: skillsOpacity, scale: skillsScale }}
             >
               <motion.h3 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                 Let's create something extraordinary together.
               </motion.h3>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
-                {skillAnimations.map(({ skill, y, opacity }) => (
-                  <motion.span
-                    key={skill}
-                    className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300"
-                    style={{ y, opacity }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+                <motion.span style={{ y: skill1Y, opacity: skill1Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  Web Development
+                </motion.span>
+                <motion.span style={{ y: skill2Y, opacity: skill2Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  Brand Strategy
+                </motion.span>
+                <motion.span style={{ y: skill3Y, opacity: skill3Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  UI/UX Design
+                </motion.span>
+                <motion.span style={{ y: skill4Y, opacity: skill4Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  Digital Marketing
+                </motion.span>
+                <motion.span style={{ y: skill5Y, opacity: skill5Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  Creative Direction
+                </motion.span>
+                <motion.span style={{ y: skill6Y, opacity: skill6Opacity }} className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300">
+                  Consulting
+                </motion.span>
               </div>
             </motion.div>
           </motion.div>
