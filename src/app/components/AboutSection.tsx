@@ -5,29 +5,46 @@ import { useEffect, useRef, useState } from 'react'
 
 const AboutSection = () => {
   const [isClient, setIsClient] = useState(false)
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  const { scrollYProgress } = useScroll()
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05])
+  // Scroll progress for the entire section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  })
+
+  // Transform values for different elements
+  const headerY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [200, 0, 0, -200])
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const headerScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
+
+  const textY = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [300, 0, 0, -300])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  const textScale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.9, 1, 1, 0.9])
+
+  const skillsY = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [400, 0, 0, -400])
+  const skillsOpacity = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0, 1, 1, 0])
+  const skillsScale = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0.7, 1, 1, 0.7])
 
   return (
     <section
-  id="about"
-  className="relative py-20 px-6 md:px-12 overflow-hidden text-white"
->
+      ref={sectionRef}
+      id="about"
+      className="relative py-20 px-6 md:px-12 overflow-hidden text-white min-h-screen"
+    >
   {/* ✅ Background Image */}
   <div className="absolute inset-0 -z-20">
     <div
       className="absolute inset-0 bg-cover bg-center"
-      style={{ backgroundImage: "url('/About_me.jpg')" }}
+      style={{ backgroundImage: "url('/About_me.png')" }}
     />
     {/* ✅ Dark Overlay */}
     <div className="absolute inset-0 bg-black opacity-60" />
   </div>
-
 
       {/* Background glowing orbs */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
@@ -37,84 +54,66 @@ const AboutSection = () => {
       </div>
 
       {/* Main container */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative z-10 max-w-6xl mx-auto"
-      >
+      <div className="relative z-5 max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          style={{ 
+            y: headerY, 
+            opacity: headerOpacity,
+            scale: headerScale
+          }}
+        >
           <motion.h2
             className="text-4xl md:text-6xl font-bold mb-4 tracking-tight relative inline-block"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
           >
             ABOUT MARCUS 
             <motion.span
               className="absolute left-0 bottom-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500"
-              initial={{ width: 0 }}
-              whileInView={{ width: '100%' }}
-              transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
+              style={{ 
+                scaleX: useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
+              }}
             />
           </motion.h2>
           <motion.p 
             className="mt-4 text-lg text-gray-300"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
           >
             I'm a creative developer who transforms ideas into digital experiences that matter.
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Content */}
         <div className="flex flex-col md:flex-row gap-10 items-center justify-center">
-          {/* (Removed Image Block) */}
-
           {/* Text Content */}
           <motion.div
             className="md:w-3/4 space-y-6 text-lg text-gray-300"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ 
+              y: textY, 
+              opacity: textOpacity,
+              scale: textScale
+            }}
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
+            <motion.p>
               With over a decade in the digital space, I've learned that great design isn't just about aesthetics—it's about solving real problems for real people.
             </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
+            <motion.p>
               My approach combines strategic thinking with creative execution. I don't just build websites; I craft digital ecosystems that grow with your business.
             </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
+            <motion.p>
               When I'm not coding or designing, you'll find me exploring the intersection of technology and creativity, always seeking new ways to push the boundaries.
             </motion.p>
 
             {/* Skill Tags */}
             <motion.div
               className="border-t border-gray-700 pt-8 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+              style={{ 
+                y: skillsY, 
+                opacity: skillsOpacity,
+                scale: skillsScale
+              }}
             >
               <motion.h3
                 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
               >
                 Let's create something extraordinary together.
               </motion.h3>
@@ -126,14 +125,15 @@ const AboutSection = () => {
                   'UI/UX Design',
                   'Digital Marketing',
                   'Creative Direction',
-                  'Technical Consulting'
+                  'Consulting'
                 ].map((skill, index) => (
                   <motion.span
                     key={skill}
                     className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + index * 0.1 }}
+                    style={{
+                      y: useTransform(scrollYProgress, [0, 0.6 + index * 0.05, 0.8, 1], [50, 0, 0, -50]),
+                      opacity: useTransform(scrollYProgress, [0, 0.5 + index * 0.05, 0.8, 1], [0, 1, 1, 0])
+                    }}
                   >
                     {skill}
                   </motion.span>
@@ -142,7 +142,7 @@ const AboutSection = () => {
             </motion.div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

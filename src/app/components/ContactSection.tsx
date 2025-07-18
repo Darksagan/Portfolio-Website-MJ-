@@ -13,7 +13,7 @@ const ContactSection = () => {
   const marqueeText = "CONTACT ME — DON'T LEAVE — CONTACT ME — LET'S CREATE — CONTACT ME — SOMETHING BRILLIANT — "
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:office@ltpmediagency.com'
+    window.location.href = 'mailto:ltpmediabiz@gmail.com'
     setIsGlitching(true)
     setTimeout(() => setIsGlitching(false), 1000)
   }
@@ -220,7 +220,7 @@ const ContactSection = () => {
 
               <Mail size={32} className="relative z-10 transform -skew-x-12 group-hover:skew-x-0 transition-transform duration-500" />
               <span className="text-2xl font-bold relative z-10 transform -skew-x-12 group-hover:skew-x-0 transition-transform duration-500">
-                office@ltpmediagency.com
+                ltpmediabiz@gmail.com
               </span>
               <motion.div
                 className="relative z-10 transform -skew-x-12 group-hover:skew-x-0 transition-transform duration-500"

@@ -7,9 +7,11 @@ import Navigation from './components/Navigation'
 import WorkSection from './components/WorkSection'
 import AboutSection from './components/AboutSection'
 import ProcessSection from './components/ProcessSection'
+import ProjectsSection from './components/ProjectsSection'
 import FAQSection from './components/FAQSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
+
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -25,6 +27,7 @@ export default function Home() {
       <WorkSection />
       <AboutSection />
       <ProcessSection />
+      <ProjectsSection /> {/* ✅ Added here under Process */}
       <FAQSection />
       <ContactSection />
       <Footer />

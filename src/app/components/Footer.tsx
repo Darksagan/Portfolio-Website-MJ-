@@ -8,7 +8,7 @@ const Footer = () => {
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com/in/marcusj',
+      url: 'https://www.linkedin.com/in/marcus-johnson79/',
       label: 'Connect on LinkedIn'
     },
     {
@@ -20,7 +20,7 @@ const Footer = () => {
     {
       name: 'Twitter',
       icon: Twitter,
-      url: 'https://twitter.com/marcusj',
+      url: 'https://x.com/Darksagan1',
       label: 'Follow on Twitter'
     }
   ]
