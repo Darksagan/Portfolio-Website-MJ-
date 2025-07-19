@@ -27,7 +27,7 @@ const FerrariPhotoSection = () => {
     { src: '/images/photo-reveal/image-14.jpg', alt: 'Project Image 14', caption: 'Final Presentation' },
   ];
 
-  const updateGallery = useCallback((progress) => {
+  const updateGallery = useCallback((progress: number) => {
     if (!galleryRef.current) return;
     const items = galleryRef.current.querySelectorAll('.gallery-item');
     const totalItems = photos.length;
