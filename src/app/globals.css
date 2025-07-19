@@ -373,4 +373,85 @@
 .cubic-text {
   font-family: 'Cubic', sans-serif;
 }
+/* Photo Reveal Effect Styles */
+.photo-reveal-container {
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
 
+.photo-reveal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  filter: blur(10px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity, filter;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.photo-item.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.photo-item img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .photo-item {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+  
+  .photo-item img {
+    max-height: 70vh;
+  }
+  
+  /* Reduce blur on mobile for performance */
+  .photo-reveal-overlay {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .photo-item {
+    filter: blur(5px);
+  }
+}
+
+/* Preload optimization */
+.photo-item img {
+  image-rendering: optimizeQuality;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
