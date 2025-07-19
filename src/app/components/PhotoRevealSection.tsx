@@ -149,8 +149,9 @@ const FerrariPhotoSection = () => {
           animate={{ y: [-10, 10, -10], rotate: [6, -6, 6] }}
           transition={{ duration: 6, repeat: Infinity }}
         >
-          // Breaking_marquee_conventions<br />
-          // Since_2014
+          {/* Breaking_marquee_conventions */}
+          <br />
+          {/* Since_2014 */}
         </motion.div>
 
         {/* Gallery Display */}
