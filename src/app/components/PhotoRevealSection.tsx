@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 const FerrariPhotoSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isInGalleryMode, setIsInGalleryMode] = useState(false);
-  const sectionRef = useRef(null);
-  const scrollContainerRef = useRef(null);
-  const galleryRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const scrollContainerRef = useRef<HTMLElement | null>(null);
+  const galleryRef = useRef<HTMLElement | null>(null);
 
   const photos = [
     { src: '/images/photo-reveal/image-01.jpg', alt: 'Project Image 1', caption: 'Creative Design Project' },
@@ -150,7 +150,6 @@ const FerrariPhotoSection = () => {
           transition={{ duration: 6, repeat: Infinity }}
         >
           {/* Breaking_marquee_conventions */}
-          <br />
           {/* Since_2014 */}
         </motion.div>
 
