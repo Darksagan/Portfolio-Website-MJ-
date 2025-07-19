@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 const FerrariPhotoSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isInGalleryMode, setIsInGalleryMode] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const scrollContainerRef = useRef<HTMLElement | null>(null);
-  const galleryRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const photos = [
     { src: '/images/photo-reveal/image-01.jpg', alt: 'Project Image 1', caption: 'Creative Design Project' },
@@ -29,7 +29,8 @@ const FerrariPhotoSection = () => {
 
   const updateGallery = useCallback((progress: number) => {
     if (!galleryRef.current) return;
-    const items = galleryRef.current.querySelectorAll('.gallery-item');
+    // Tell TypeScript these are HTMLElements so .style exists
+    const items = galleryRef.current.querySelectorAll<HTMLElement>('.gallery-item');
     const totalItems = photos.length;
     const centerIndex = progress * (totalItems - 1);
     const currentCenterIndex = Math.round(centerIndex);
@@ -150,6 +151,7 @@ const FerrariPhotoSection = () => {
           transition={{ duration: 6, repeat: Infinity }}
         >
           {/* Breaking_marquee_conventions */}
+          <br />
           {/* Since_2014 */}
         </motion.div>
 
