@@ -16,7 +16,7 @@ const AboutSection = () => {
     offset: ['start end', 'end start'],
   })
 
-  // Main transforms (scaled down slightly)
+  // Main transforms
   const headerY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [200, 0, 0, -200])
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const headerScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.7, 0.9, 0.9, 0.7])
@@ -31,11 +31,33 @@ const AboutSection = () => {
 
   const underlineScaleX = useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
 
-  const skillTransforms = [0.6, 0.65, 0.7, 0.75, 0.8, 0.85].map((offset) => {
-    const y = useTransform(scrollYProgress, [0, offset, 0.95, 1], [50, 0, 0, -50])
-    const opacity = useTransform(scrollYProgress, [0, offset - 0.1, 0.95, 1], [0, 1, 1, 0])
-    return { y, opacity }
-  })
+  // ✅ Fixed: Skill transforms declared individually (not inside map)
+  const skillTransforms = [
+    {
+      y: useTransform(scrollYProgress, [0, 0.6, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.5, 0.95, 1], [0, 1, 1, 0]),
+    },
+    {
+      y: useTransform(scrollYProgress, [0, 0.65, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.55, 0.95, 1], [0, 1, 1, 0]),
+    },
+    {
+      y: useTransform(scrollYProgress, [0, 0.7, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.6, 0.95, 1], [0, 1, 1, 0]),
+    },
+    {
+      y: useTransform(scrollYProgress, [0, 0.75, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.65, 0.95, 1], [0, 1, 1, 0]),
+    },
+    {
+      y: useTransform(scrollYProgress, [0, 0.8, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.7, 0.95, 1], [0, 1, 1, 0]),
+    },
+    {
+      y: useTransform(scrollYProgress, [0, 0.85, 0.95, 1], [50, 0, 0, -50]),
+      opacity: useTransform(scrollYProgress, [0, 0.75, 0.95, 1], [0, 1, 1, 0]),
+    },
+  ]
 
   return (
     <section
@@ -117,7 +139,10 @@ const AboutSection = () => {
             ].map((label, index) => (
               <motion.span
                 key={label}
-                style={{ y: skillTransforms[index].y, opacity: skillTransforms[index].opacity }}
+                style={{
+                  y: skillTransforms[index].y,
+                  opacity: skillTransforms[index].opacity,
+                }}
                 className="px-4 py-2 bg-gray-800 text-gray-200 text-xs md:text-sm font-medium rounded-full hover:bg-purple-600 transition-all duration-300"
               >
                 {label}
