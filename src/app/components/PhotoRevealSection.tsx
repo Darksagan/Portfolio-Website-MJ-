@@ -8,7 +8,8 @@ const FerrariPhotoSection = () => {
   const [isInGalleryMode, setIsInGalleryMode] = useState(false);
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  const galleryRef = useRef(null);
+  const galleryRef = useRef<HTMLDivElement>(null)
+
 
   const photos = [
     { src: '/images/photo-reveal/image-01.jpg', alt: 'Project Image 1', caption: 'Creative Design Project' },
