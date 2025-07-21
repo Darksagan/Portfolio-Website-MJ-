@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const FerrariPhotoSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isInGalleryMode, setIsInGalleryMode] = useState(false);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null)
   const scrollContainerRef = useRef(null);
   const galleryRef = useRef<HTMLDivElement>(null)
 
