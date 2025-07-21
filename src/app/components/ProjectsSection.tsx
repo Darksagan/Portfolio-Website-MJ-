@@ -29,15 +29,15 @@ const projects = [
     description: 'Travel experiences that inspire wanderlust and adventure',
   },
   {
-    title: 'YUEN FINAL',
-    thumbnail: '/thumbnails/yuen-final-thumbnail.jpg',
-    video: '/videos/yuen-final.mp4',
+    title: 'FASHIONISTA',
+    thumbnail: '/thumbnails/fashionista-thumbnail.jpg',
+    video: '/videos/FASHIONISTA.mp4',
     description: 'Final project showcasing creative direction and execution',
   },
   {
     title: 'REAL-ESTATE',
     thumbnail: '/thumbnails/real-estate-thumbnail.jpg',
-    video: '/videos/misery-needs-company.mp4',
+    video: '/videos/REAL-ESTATE.mp4',
     description: 'Final project showcasing creative direction and execution',
   },
 ]
