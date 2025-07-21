@@ -27,7 +27,7 @@ const FerrariPhotoSection = () => {
     { src: '/images/photo-reveal/image-14.jpg', alt: 'Project Image 14', caption: 'Final Presentation' },
   ];
 
-  const updateGallery = useCallback((progress) => {
+  const updateGallery = useCallback((progress: number) => {
     if (!galleryRef.current) return;
     const items = galleryRef.current.querySelectorAll('.gallery-item');
     const totalItems = photos.length;
@@ -167,7 +167,7 @@ const FerrariPhotoSection = () => {
                   transformStyle: 'preserve-3d',
                   transform: 'translate(-50%, -50%) translate3d(0px, 0px, -1000px)',
                   opacity: 0,
-                  border: '3px solid rgba(220, 20, 60, 0.3)'
+                  border: '3px solid rgba(247, 6, 250, 0.5)' // purple with transparency
                 }}
               >
                 <img

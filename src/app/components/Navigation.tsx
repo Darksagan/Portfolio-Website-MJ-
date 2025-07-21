@@ -14,7 +14,7 @@ const Navigation = () => {
     }
 
     const updateActiveSection = () => {
-      const sections = ['home', 'work', 'about', 'process', 'contact']
+      const sections = ['home', 'work', 'about', 'process', 'contact', 'blog']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -44,18 +44,17 @@ const Navigation = () => {
     { label: 'Music', href: '/music', id: 'music' },
     { label: 'About', href: '#about', id: 'about' },
     { label: 'Process', href: '#process', id: 'process' },
-    { label: 'Contact', href: '#contact', id: 'contact' }
+    { label: 'Contact', href: '#contact', id: 'contact' },
+    { label: 'Blog', href: '/blog', id: 'blog' }
   ]
 
   const handleNavClick = (href: string, id: string) => {
     if (href.startsWith('/')) {
-      // Handle page navigation with transition
       document.body.classList.add('fade-out')
       setTimeout(() => {
         window.location.href = href
       }, 400)
     } else {
-      // Handle section scrolling
       const element = document.querySelector(href)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
@@ -75,7 +74,6 @@ const Navigation = () => {
       animate={{ opacity: 1, y: 0, x: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
     >
-      {/* Background glow effect */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-l from-purple-500/10 to-transparent"
         animate={{
@@ -106,7 +104,6 @@ const Navigation = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Active indicator */}
               {activeSection === item.id && (
                 <motion.div
                   className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500"
@@ -115,7 +112,6 @@ const Navigation = () => {
                 />
               )}
 
-              {/* Hover effect background */}
               <motion.div
                 className="absolute inset-0 bg-white/5 rounded-md -z-10"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -123,7 +119,6 @@ const Navigation = () => {
                 transition={{ duration: 0.2 }}
               />
 
-              {/* Glitch effect on hover */}
               <motion.span
                 className="relative inline-block"
                 whileHover={{
@@ -138,7 +133,6 @@ const Navigation = () => {
                 {item.label}
               </motion.span>
 
-              {/* Particle effect on hover */}
               <motion.div
                 className="absolute inset-0 pointer-events-none"
                 whileHover={{
@@ -155,7 +149,6 @@ const Navigation = () => {
         ))}
       </div>
 
-      {/* Decorative elements */}
       <motion.div
         className="absolute -left-4 top-1/2 w-px h-8 bg-gradient-to-b from-transparent via-white/30 to-transparent"
         animate={{
@@ -165,7 +158,6 @@ const Navigation = () => {
         transition={{ duration: 3, repeat: Infinity }}
       />
 
-      {/* Corner accent */}
       <motion.div
         className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-white/20"
         animate={{
@@ -178,4 +170,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-

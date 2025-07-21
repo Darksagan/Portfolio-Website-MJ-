@@ -34,6 +34,12 @@ const projects = [
     video: '/videos/yuen-final.mp4',
     description: 'Final project showcasing creative direction and execution',
   },
+  {
+    title: 'REAL-ESTATE',
+    thumbnail: '/thumbnails/real-estate-thumbnail.jpg',
+    video: '/videos/misery-needs-company.mp4',
+    description: 'Final project showcasing creative direction and execution',
+  },
 ]
 
 const ProjectsSection = () => {
@@ -162,13 +168,16 @@ const ProjectsSection = () => {
 
   // More dynamic card positions with better visual variety
   const cardPositions = [
-    { top: '20%', left: '5vw', rotation: -5 },
-    { top: '60%', left: '25vw', rotation: 3 },
-    { top: '5%', left: '30vw', rotation: -2 },
-    { top: '55%', left: '65vw', rotation: -6 }, // VACATION - moved lower with more rotation
-    { top: '15%', left: '55vw', rotation: 8 }, // YUEN FINAL - moved higher with opposite rotation
-  ]
-
+    // Row 1 (top row)
+    { top: '10%', left: '10vw', rotation: -4 },
+    { top: '10%', left: '40vw', rotation: 2 },
+    { top: '10%', left: '70vw', rotation: -3 },
+  
+    // Row 2 (bottom row)
+    { top: '55%', left: '10vw', rotation: 5 },
+    { top: '55%', left: '40vw', rotation: -2 },
+    { top: '55%', left: '70vw', rotation: 4 },
+  ];  
   return (
     <>
       <section
