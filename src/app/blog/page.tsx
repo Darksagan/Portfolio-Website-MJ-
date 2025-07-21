@@ -1,10 +1,14 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
-const AnimatedText = ({ text }) => {
-  const ref = useRef(null)
+type AnimatedTextProps = {
+  text: string
+}
+
+const AnimatedText = ({ text }: AnimatedTextProps) => {
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   const characters = text.split('').map((char, index) => ({
@@ -21,7 +25,7 @@ const AnimatedText = ({ text }) => {
       transformPerspective: 500,
       transition: { duration: 0.5, ease: 'easeOut' },
     },
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1,
       filter: 'blur(0px)',
       x: 0,
