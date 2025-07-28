@@ -7,15 +7,17 @@ export async function generateStaticParams() {
   return posts.map(post => ({ slug: post.slug }))
 }
 
+// ✅ CORRECT signature, inline typed params — no Promise, no interface
 export default async function BlogPost({
   params,
 }: {
   params: { slug: string }
 }) {
-  const { slug } = params
-  const post = getPostBySlug(slug)
+  const post = getPostBySlug(params.slug)
 
-  if (!post) notFound()
+  if (!post) {
+    notFound()
+  }
 
   return <BlogPostPage post={post} />
 }
