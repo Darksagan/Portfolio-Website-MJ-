@@ -1,3 +1,4 @@
+// Triggering clean build
 // src/app/blog/page.tsx
 import { mockPosts } from '@/lib/posts'
 import BlogCard from '../components/BlogCard'
