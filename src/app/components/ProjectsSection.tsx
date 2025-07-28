@@ -25,7 +25,7 @@ const projects = [
   {
     title: 'VACATION',
     thumbnail: '/thumbnails/vacation-thumbnail.jpg',
-    video: '/videos/vacation.mp4',
+    video: '/videos/VACATION.mp4',
     description: 'Travel experiences that inspire wanderlust and adventure',
   },
   {
