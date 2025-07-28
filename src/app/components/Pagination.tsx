@@ -15,15 +15,16 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     const pages = []
     const showPages = 5 // Number of page buttons to show
 
-    let startPage = Math.max(1, currentPage - Math.floor(showPages / 2))
-    let endPage = Math.min(totalPages, startPage + showPages - 1)
+    const startPage = Math.max(1, currentPage - Math.floor(showPages / 2))
+    const endPage = Math.min(totalPages, startPage + showPages - 1)
 
     // Adjust start page if we're near the end
-    if (endPage - startPage + 1 < showPages) {
-      startPage = Math.max(1, endPage - showPages + 1)
-    }
+    const adjustedStartPage =
+      endPage - startPage + 1 < showPages
+        ? Math.max(1, endPage - showPages + 1)
+        : startPage
 
-    for (let i = startPage; i <= endPage; i++) {
+    for (let i = adjustedStartPage; i <= endPage; i++) {
       pages.push(i)
     }
 
@@ -61,9 +62,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           >
             1
           </button>
-          {pageNumbers[0] > 2 && (
-            <span className="px-2 text-gray-400">...</span>
-          )}
+          {pageNumbers[0] > 2 && <span className="px-2 text-gray-400">...</span>}
         </>
       )}
 
@@ -114,4 +113,3 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     </motion.div>
   )
 }
-
