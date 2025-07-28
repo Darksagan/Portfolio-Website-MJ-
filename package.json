@@ -10,6 +10,7 @@
     "format": "bunx biome format --write"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.6",

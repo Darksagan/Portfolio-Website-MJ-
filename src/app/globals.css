@@ -455,3 +455,5 @@
 html {
   scroll-behavior: smooth;
 }
+/* Blog-specific styling */
+.blog-content h1 { /* etc... */ }
