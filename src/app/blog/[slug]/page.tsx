@@ -10,9 +10,10 @@ export async function generateStaticParams() {
 export default async function BlogPost({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
 
   if (!post) {
     notFound()
