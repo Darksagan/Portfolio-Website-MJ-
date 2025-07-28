@@ -13,13 +13,13 @@ const projects = [
   {
     title: 'LUXE BAG',
     thumbnail: '/thumbnails/luxe-bag-thumbnail.jpg',
-    video: '/videos/luxe-bag.mp4',
+    video: '/videos/LUXE-BAG.mp4',
     description: 'Premium leather goods showcasing craftsmanship and elegance',
   },
   {
     title: 'LUXE SERUM',
     thumbnail: '/thumbnails/luxe-serum-thumbnail.jpg',
-    video: '/videos/luxe-serum.mp4',
+    video: '/videos/LUXE-SERUM.mp4',
     description: 'Skincare innovation through advanced formulation technology',
   },
   {
