@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  distDir: 'out',
-  allowedDevOrigins: ["*.preview.same-app.com"],
   images: {
-    unoptimized: true,
+    formats: ['image/webp', 'image/avif'],
     domains: [
       "source.unsplash.com",
       "images.unsplash.com",
