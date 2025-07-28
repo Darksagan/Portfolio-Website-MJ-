@@ -7,7 +7,6 @@ export async function generateStaticParams() {
   return posts.map(post => ({ slug: post.slug }))
 }
 
-// ✅ Inline typing directly from the route file's expected structure
 export default async function BlogPost({
   params,
 }: {
