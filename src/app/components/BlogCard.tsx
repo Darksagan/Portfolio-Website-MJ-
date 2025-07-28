@@ -27,6 +27,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
               src={post.featuredImage}
               alt={post.title}
               fill
+              loading="lazy"  // Add this line
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (

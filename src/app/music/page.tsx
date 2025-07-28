@@ -279,6 +279,7 @@ const MusicPage = () => {
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="relative">
                     <img
+                      loading="lazy"
                       src={project.coverArt}
                       alt={project.title}
                       className="w-20 h-20 object-cover border-2 border-gray-600"
@@ -339,7 +340,7 @@ const MusicPage = () => {
                     }}
                     onTimeUpdate={() => handleTimeUpdate(project.id)}
                     onEnded={() => setCurrentlyPlaying(null)}
-                    preload="metadata"
+                    preload="none"
                   >
                     <source src={project.audioUrl} type="audio/mpeg" />
                   </audio>
