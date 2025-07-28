@@ -3,7 +3,7 @@ title: "How to Leverage AI in Content Creation: A Complete Guide for 2025"
 excerpt: "Discover the revolutionary ways AI is transforming content creation, from ideation to execution. Learn practical strategies to enhance your creative workflow while maintaining authenticity and human connection."
 publishDate: "2025-01-15"
 author: "LTP Media Agency"
-featuredImage: "/blog/ai-content-creation.jpg"
+featuredImage: "/blog/how-to-leverage-ai-for-content-creation-2025.jpg"
 categories: ["AI", "Content Creation"]
 tags: ["artificial intelligence", "content strategy", "digital marketing", "automation", "creativity"]
 readTime: 8

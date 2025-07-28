@@ -1,12 +1,13 @@
-// src/app/blog/page.tsx
-import { Suspense } from 'react'
-import { mockPosts } from '@/lib/posts'
+import { getAllPosts } from '@/lib/posts-server'
 import BlogCard from '../components/BlogCard'
+import { Suspense } from 'react'
 
 function BlogContent() {
+  const posts = getAllPosts()
+  
   return (
     <div className="grid gap-8">
-      {mockPosts.map((post, index) => (
+      {posts.map((post, index) => (
         <BlogCard key={post.slug} post={post} index={index} />
       ))}
     </div>

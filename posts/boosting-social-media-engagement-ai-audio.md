@@ -3,7 +3,7 @@ title: "Boosting Social Media Engagement with AI-Powered Audio Production"
 excerpt: "Discover how AI-powered audio production is revolutionizing social media content. Learn practical strategies to create compelling audio experiences that drive engagement and build stronger connections with your audience."
 publishDate: "2025-01-05"
 author: "LTP Media Agency"
-featuredImage: "/blog/ai-audio-social-media.jpg"
+featuredImage: "/blog/ai-powered-audio-social-media-engagement.jpg"
 categories: ["Audio Production", "Social Media", "AI"]
 tags: ["audio content", "social media marketing", "artificial intelligence", "engagement", "content creation"]
 readTime: 9

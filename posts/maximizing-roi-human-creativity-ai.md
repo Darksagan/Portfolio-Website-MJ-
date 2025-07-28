@@ -3,7 +3,7 @@ title: "Maximizing ROI by Combining Human Creativity with AI"
 excerpt: "Learn how to achieve exceptional returns on investment by strategically combining human creativity with artificial intelligence. Discover frameworks, case studies, and practical strategies for optimizing this powerful partnership."
 publishDate: "2024-12-28"
 author: "LTP Media Agency"
-featuredImage: "/blog/human-ai-collaboration-roi.jpg"
+featuredImage: "/blog/maximize-roi-human-ai-collaboration.jpg"
 categories: ["Business Strategy", "AI", "ROI"]
 tags: ["return on investment", "human creativity", "artificial intelligence", "business optimization", "strategic planning"]
 readTime: 11

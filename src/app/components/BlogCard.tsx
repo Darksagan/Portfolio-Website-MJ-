@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BlogPostMeta } from '@/types/blog'
-import { formatDate } from '@/lib/posts'
+import { formatDate } from '@/lib/posts' // or '@/lib/utils' if you moved formatDate there
+
 
 interface BlogCardProps {
   post: BlogPostMeta

@@ -3,7 +3,7 @@ title: "Top Trends in AI-Generated UGC for 2025: The Future of User Content"
 excerpt: "Explore the cutting-edge trends shaping AI-generated user-generated content in 2025. From hyper-personalized experiences to ethical AI practices, discover what's driving the next wave of digital engagement."
 publishDate: "2025-01-10"
 author: "LTP Media Agency"
-featuredImage: "/blog/ai-ugc-trends-2025.jpg"
+featuredImage: "/blog/ai-generated-user-content-trends-2025.jpg"
 categories: ["AI", "UGC", "Digital Marketing"]
 tags: ["user generated content", "artificial intelligence", "social media", "content trends", "digital strategy"]
 readTime: 10

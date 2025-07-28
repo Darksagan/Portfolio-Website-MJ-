@@ -3,7 +3,7 @@ title: "The Future of Influencer Marketing and AI: What's Coming Next"
 excerpt: "Explore how artificial intelligence is reshaping influencer marketing, from AI-powered creator discovery to virtual influencers and predictive campaign optimization. Discover what the future holds for brands and creators."
 publishDate: "2024-12-15"
 author: "LTP Media Agency"
-featuredImage: "/blog/future-influencer-marketing-ai.jpg"
+featuredImage: "/blog/future-influencer-marketing-ai-trends-2025.jpg"
 categories: ["Influencer Marketing", "AI", "Digital Marketing"]
 tags: ["influencer marketing", "artificial intelligence", "digital strategy", "virtual influencers", "marketing automation"]
 readTime: 13
