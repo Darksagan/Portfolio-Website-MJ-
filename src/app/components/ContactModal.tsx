@@ -21,18 +21,20 @@ export default function ContactModal({ onClose }: ContactModalProps) {
     setError('');
 
     emailjs
-      .send(
-        'service_y33w1bb',   // Replace with your EmailJS Service ID
-        'template_uutvwjd',  // Replace with your EmailJS Template ID
-        form,
-        'mcrdwwtHCf8wYBgai'    // Replace with your EmailJS Public Key
-      )
-      .then(() => {
-        setSubmitted(true);
-      })
-      .catch(() => {
-        setError('Failed to send message. Please try again later.');
-      });
+    .send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      form,
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+    )
+    .then(() => {
+      setSubmitted(true);
+      setError('');
+    })
+    .catch((error) => {
+      console.error('Email sending error:', error);
+      setError('Failed to send message. Please try again later.');
+    });  
   };
 
   return (
