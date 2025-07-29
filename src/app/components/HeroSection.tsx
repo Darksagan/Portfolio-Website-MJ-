@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useAnimation } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Play, Pause } from 'lucide-react';
 import Image from 'next/image';
+import ContactModal from './ContactModal';
 import heroImage from '@/public/Screenshot-2025-07-17-at-11.45.56-AM.png';
 
 // Generate particles data only on client
@@ -32,6 +33,9 @@ const HeroSection = () => {
   >([]);
   const [mounted, setMounted] = useState(false);
   const controls = useAnimation();
+
+  // New state for modal open/close
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -77,6 +81,11 @@ const HeroSection = () => {
       workSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Open modal handler
+  const openModal = () => setIsModalOpen(true);
+  // Close modal handler (pass this to ContactModal)
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <section
@@ -306,6 +315,7 @@ const HeroSection = () => {
           </motion.button>
 
           <motion.button
+            onClick={openModal} // <-- Added onClick to open modal
             className="group relative px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg hover:border-white/60 transition-all duration-300 hover-glow"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -373,6 +383,9 @@ const HeroSection = () => {
       >
         v2.0.1 — ENHANCED
       </motion.div>
+
+      {/* Render ContactModal conditionally */}
+      {isModalOpen && <ContactModal onClose={closeModal} />}
     </section>
   );
 };
